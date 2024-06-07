@@ -1,6 +1,7 @@
 import { Configuration, DefinePlugin } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import * as dotenv from "dotenv";
+import { styleLoadersArray, lessRule } from "./config/style";
 
 const path = require("path");
 const envConfig = dotenv.config({
@@ -25,8 +26,9 @@ const baseConfig: Configuration = {
       },
       {
         test: /.css$/, //匹配 css 文件
-        use: ["style-loader", "css-loader"],
+        use: styleLoadersArray,
       },
+      lessRule,
     ],
   },
   resolve: {

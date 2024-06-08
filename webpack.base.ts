@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import { styleLoadersArray, lessRule } from "./config/style";
 
 const path = require("path");
+const WebpackBar = require("webpackbar");
 const envConfig = dotenv.config({
   path: path.resolve(__dirname, "./env/.env." + process.env.BASE_ENV),
 });
@@ -12,7 +13,7 @@ const baseConfig: Configuration = {
   entry: path.join(__dirname, "./src/index.tsx"), // 入口文件
   // 打包出口文件
   output: {
-    filename: "static/js/[name].js", // 每个输出js的名称
+    filename: "static/js/[name].[chunkhash:8].js", // 每个输出js的名称
     path: path.join(__dirname, "./dist"), // 打包结果输出路径
     clean: true, // webpack4需要配置clean-webpack-plugin来删除dist文件,webpack5内置了
     publicPath: "/", // 打包后文件的公共前缀路径
@@ -22,7 +23,9 @@ const baseConfig: Configuration = {
     rules: [
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: "babel-loader"
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+        // use: ["thread-loader", "babel-loader"] 当项目规模到达一定程度可以考虑开启多进程打包
       },
       {
         test: /.css$/, //匹配 css 文件
@@ -38,7 +41,7 @@ const baseConfig: Configuration = {
           }
         },
         generator:{ 
-          filename:'static/images/[hash][ext][query]', // 文件输出目录和命名
+          filename:'static/fonts/[name].[contenthash:8][ext]', // 加上[contenthash:8]
         },
       },
       {
@@ -50,7 +53,7 @@ const baseConfig: Configuration = {
           }
         },
         generator:{ 
-          filename:'static/fonts/[hash][ext][query]', // 文件输出目录和命名
+          filename:'static/fonts/[name].[contenthash:8][ext]', // 加上[contenthash:8]
         },
       },
       {
@@ -62,7 +65,7 @@ const baseConfig: Configuration = {
           }
         },
         generator:{ 
-          filename:'static/media/[hash][ext][query]', // 文件输出目录和命名
+          filename:'static/fonts/[name].[contenthash:8][ext]', // 加上[contenthash:8]
         },
       },
       {
@@ -109,7 +112,11 @@ const baseConfig: Configuration = {
       "process.env.BASE_ENV": JSON.stringify(process.env.BASE_ENV),
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
+    new WebpackBar()
   ].filter(Boolean),
+  cache: {
+    type: 'filesystem', // 使用文件缓存
+  },
 };
 
 export default baseConfig

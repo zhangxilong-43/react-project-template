@@ -4,6 +4,7 @@ import order from '@/assets/imgs/order.png';
 import avatartion from '@/assets/imgs/avatartion.png';
 import flower from '@/assets/imgs/flowr.png';
 import memberList from './json/mock.json';
+import { Demo1, Demo2 } from '@/components'
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <img src={avatartion} alt="大于于10kb的图片" />
       <img src={flower} alt="大于于10kb的图片" />
       <div className={lessStyles['smallImg']}>小图片背景</div> 
-      <div className={lessStyles['bigImg']}>大图片背景</div> 
+      <div className={lessStyles['bigImg']}>大图片背景</div>
       {
         memberList.map((item) => (
           <ul>
@@ -37,7 +38,8 @@ function App() {
         <br />
         <p>非受控组件</p>
         <input type="text" />
-    </div>
+      </div>
+      <Demo1 />
     </div>
   </div>
 }

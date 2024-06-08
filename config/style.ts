@@ -1,7 +1,9 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const lessRegex = /\.less$/;
+const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
 export const styleLoadersArray = [
-    "style-loader",
+    isDev ? "style-loader" : MiniCssExtractPlugin.loader,
     {
       loader: "css-loader",
       options: {

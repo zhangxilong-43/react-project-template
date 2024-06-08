@@ -1,6 +1,7 @@
 import path from "path";
 import { merge } from "webpack-merge";
 import { Configuration as WebpackConfiguration } from "webpack";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
 import baseConfig from "./webpack.base";
 
@@ -28,6 +29,9 @@ const devConfig: Configuration = merge(baseConfig, {
     },
     headers: { "Access-Control-Allow-Origin": "*" },
   },
+  plugins: [
+    new ReactRefreshWebpackPlugin(), // 添加热更新插件
+  ],
 });
 
 export default devConfig;

@@ -11,6 +11,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "resolveJsonModule": true,
+    "experimentalDecorators": true
   },
   "include": ["./src", "./typings/*.d.ts"]
 }

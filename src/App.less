@@ -1,25 +1,25 @@
 @color: red;
 
 .lessBox {
-    .box {
-        color: @color;
-        background-color: lightblue;
-        transform: translateX(100);
+  .box {
+    color: @color;
+    background-color: lightblue;
+    transform: translateX(100);
 
-        &:before{
-            @arr: 'hello', 'world';
-            content: `@{arr}.join(' ').toUpperCase()`;
-          }
+    &:before {
+      @arr: 'hello', 'world';
+      content: ` @{arr}.join(' ') .toUpperCase() `;
     }
+  }
 
-    .smallImg {
-        width: 69px;
-        height: 75px;
-        background: url('@/assets/imgs/order.png') no-repeat;
-      }
-      .bigImg {
-        width: 232px;
-        height: 154px;
-        background: url('@/assets/imgs/flowr.png') no-repeat;
-      }
+  .smallImg {
+    width: 69px;
+    height: 75px;
+    background: url('@/assets/imgs/order.png') no-repeat;
+  }
+  .bigImg {
+    width: 232px;
+    height: 154px;
+    background: url('@/assets/imgs/flowr.png') no-repeat;
+  }
 }

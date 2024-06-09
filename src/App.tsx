@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import * as lessStyles from '@/App.less'
+import { useState } from 'react'
+import lessStyles from '@/App.less'
 import chart from '@/assets/imgs/chart.svg'
 import order from '@/assets/imgs/order.png'
 import avatartion from '@/assets/imgs/avatartion.png'
 import flower from '@/assets/imgs/flowr.png'
 import memberList from './json/mock.json'
-import { Demo1, Demo2 } from '@/components'
+import { Demo1 } from '@/components'
 
 function App() {
   const [num, setNum] = useState(99)
@@ -13,7 +13,6 @@ function App() {
   const onChange = (e: any) => {
     setCounts(e.target.value)
   }
-  console.log('memberList', memberList)
 
   return (
     <div className={lessStyles.lessBox}>

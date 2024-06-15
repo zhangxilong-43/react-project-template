@@ -1,25 +1,8 @@
-@color: red;
+.app_box {
+  height: 98vh;
+  background-color: bisque;
 
-.lessBox {
-  .box {
-    color: @color;
-    background-color: lightblue;
-    transform: translateX(100);
-
-    &:before {
-      @arr: 'hello', 'world';
-      content: ` @{arr}.join(' ') .toUpperCase() `;
-    }
-  }
-
-  .smallImg {
-    width: 69px;
-    height: 75px;
-    background: url('@/assets/imgs/order.png') no-repeat;
-  }
-  .bigImg {
-    width: 232px;
-    height: 154px;
-    background: url('@/assets/imgs/flowr.png') no-repeat;
+  .aie-theme-light {
+    height: 98vh;
   }
 }

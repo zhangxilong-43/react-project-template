@@ -115,7 +115,8 @@ const baseConfig: Configuration = {
     new ModuleFederationPlugin({
       name: 'microApp-project',
       remotes: {
-        project_container: 'project_container@http://localhost:9091/remoteEntry.js'
+        project_container:
+          'project_container@https://micro-frontend-container-88g.pages.dev/remoteEntry.js'
       },
       shared: {
         // 统一 react 等版本，避免重复加载

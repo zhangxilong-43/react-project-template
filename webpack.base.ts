@@ -115,18 +115,39 @@ const baseConfig: Configuration = {
     new ModuleFederationPlugin({
       name: 'microApp-project',
       remotes: {
-        project_container:
-          'project_container@https://micro-frontend-container-88g.pages.dev/remoteEntry.js'
+        // project_container: 'project_container@http://127.0.0.1:9091/remoteEntry.js'
+        // 'project_container@https://micro-frontend-container-88g.pages.dev/remoteEntry.js'
+        // 为什么要这样写？详见： https://github.com/module-federation/module-federation-examples/issues/1142
+        project_container: `promise new Promise(resolve => {
+          const remoteUrl = 'http://127.0.0.1:9091/remoteEntry.js'
+          const script = document.createElement('script')
+          script.src = remoteUrl
+          script.onload = () => {
+            const proxy = {
+              get: (request) => window.project_container.get(request),
+              init: (arg) => {
+                try {
+                  return window.project_container.init(arg)
+                } catch(e) {
+                  console.log('remote container already initialized')
+                }
+              }
+            }
+            resolve(proxy)
+          }
+          document.head.appendChild(script);
+        })
+        `
       },
       shared: {
         // 统一 react 等版本，避免重复加载
         react: {
-          singleton: true,
-          eager: true
+          singleton: true
+          // eager: true
         },
         'react-dom': {
-          singleton: true,
-          eager: true
+          singleton: true
+          // eager: true
         }
       }
     }),

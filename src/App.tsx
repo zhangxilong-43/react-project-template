@@ -11,7 +11,7 @@ export default () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Editor
           className={(lessStyles as any)['aie-theme-light']}
-          content='这是放置在微应用中的 AiEditor 组件。'
+          content='我是在容器中抛出，在微应用中使用的 AiEditor 组件。'
         />
       </Suspense>
     </div>

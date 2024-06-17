@@ -119,7 +119,7 @@ const baseConfig: Configuration = {
         // 'project_container@https://micro-frontend-container-88g.pages.dev/remoteEntry.js'
         // 为什么要这样写？详见： https://github.com/module-federation/module-federation-examples/issues/1142
         project_container: `promise new Promise(resolve => {
-          const remoteUrl = 'http://127.0.0.1:9091/remoteEntry.js'
+          const remoteUrl = '${process.env.REMOTE_URL}/remoteEntry.js'
           const script = document.createElement('script')
           script.src = remoteUrl
           script.onload = () => {
